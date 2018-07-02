@@ -20,8 +20,9 @@ Route::group([
         'categories' => CategoriesController::class,
         'newstypes' => NewstypesController::class,
         'advertisingSpaces' => AdvertisingSpacesController::class,
+        'advertisings' => AdvertisingsController::class,
     ]);
 
-
+    $router->get('api/advertisingSpaces', 'ApiController@AdvertisingSpaces')->name('admin.api.advertisingSpaces');
 
 });

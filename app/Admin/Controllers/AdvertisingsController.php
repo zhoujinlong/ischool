@@ -73,7 +73,7 @@ class AdvertisingsController extends Controller
 
             $grid->id('ID')->sortable();
             $grid->title('标题');
-            $grid->image('图像');
+            $grid->image('图像')->image(null, null, 100);
             $grid->url('链接');
             $grid->advertising_space()->name('所属广告位');
             $grid->sort('排序')->editable();
@@ -90,10 +90,12 @@ class AdvertisingsController extends Controller
     {
         return Admin::form(Advertising::class, function (Form $form) {
 
-            $form->select('advertising_space_id', '所属广告位')->rules('required|integer')->options();
+            $form->select('advertising_space_id', '所属广告位')->rules('required|integer')->options(\App\Models\AdvertisingSpace::all()->pluck('name','id'));
+            $form->text('title','标题')->rules('required');
+            $form->image('image', '图片')->uniqueName()->rules('nullable|image');
+            $form->url('url', '链接')->rules('nullable|url');
+            $form->number('sort', '排序')->min(0);
 
-            $form->display('created_at', 'Created At');
-            $form->display('updated_at', 'Updated At');
         });
     }
 }

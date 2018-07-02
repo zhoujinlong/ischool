@@ -9,7 +9,7 @@ use App\Models\AdvertisingSpace;
 class ApiController extends Controller
 {
     public function AdvertisingSpaces(){
-        $list = AdvertisingSpace::all()->get(['id', 'name as text']);
-        return $list;
+        $list = AdvertisingSpace::query()->get(['id','name as text']);
+        return response()->json($list);
     }
 }

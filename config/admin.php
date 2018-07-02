@@ -71,8 +71,8 @@ return [
         'disk' => 'public',
 
         'directory' => [
-            'image' => 'images',
-            'file'  => 'files',
+            'image' => 'images/'.date('Ym')."/".date('d'),
+            'file'  => 'files/'.date('Ym')."/".date('d'),
         ],
     ],
 
