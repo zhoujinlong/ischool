@@ -19,6 +19,7 @@ Route::group([
         'natures' => NaturesController::class,
         'categories' => CategoriesController::class,
         'newstypes' => NewstypesController::class,
+        'advertisingSpaces' => AdvertisingSpacesController::class,
     ]);
 
 

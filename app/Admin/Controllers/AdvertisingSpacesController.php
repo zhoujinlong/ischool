@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\Category;
+use App\Models\AdvertisingSpace;
 
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -11,9 +11,10 @@ use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
 
-class CategoriesController extends Controller
+class AdvertisingSpacesController extends Controller
 {
     use ModelForm;
+
 
     /**
      * Index interface.
@@ -22,9 +23,10 @@ class CategoriesController extends Controller
      */
     public function index()
     {
+        
         return Admin::content(function (Content $content) {
 
-            $content->header('高校类别');
+            $content->header('广告位');
 
             $content->body($this->grid());
         });
@@ -40,7 +42,7 @@ class CategoriesController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('高校类别');
+            $content->header('广告位');
 
             $content->body($this->form()->edit($id));
         });
@@ -55,7 +57,7 @@ class CategoriesController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('高校类别');
+            $content->header('广告位');
 
             $content->body($this->form());
         });
@@ -68,11 +70,16 @@ class CategoriesController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(Category::class, function (Grid $grid) {
+        return Admin::grid(AdvertisingSpace::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
             $grid->name('名称');
-            $grid->sort('排序')->editable();
+
+            $states = [
+                'on'  => ['value' => 1,  'color' => 'primary'],
+                'off' => ['value' => 0,  'color' => 'default'],
+            ];
+            $grid->is_able('启用')->switch($states);
 
         });
     }
@@ -84,11 +91,10 @@ class CategoriesController extends Controller
      */
     protected function form()
     {
-        return Admin::form(Category::class, function (Form $form) {
+        return Admin::form(AdvertisingSpace::class, function (Form $form) {
 
-            $form->text('name', '名称')->rules('required');
-            $form->number('sort', '排序')->min(0);
-
+            $form->text('name', '名称');
+            $form->switch('is_able','启用');
 
         });
     }

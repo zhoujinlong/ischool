@@ -88,7 +88,7 @@ class NaturesController extends Controller
         return Admin::form(Nature::class, function (Form $form) {
 
             $form->text('name', '名称')->rules('required');
-            $form->number('sort', '排序');
+            $form->number('sort', '排序')->min(0);
 
         });
     }

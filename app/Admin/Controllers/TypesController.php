@@ -87,7 +87,7 @@ class TypesController extends Controller
         return Admin::form(Type::class, function (Form $form) {
 
             $form->text('name', '名称')->rules('required');
-            $form->number('sort', '排序');
+            $form->number('sort', '排序')->min(0);
 
         });
     }
