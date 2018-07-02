@@ -78,6 +78,11 @@ class AdvertisingsController extends Controller
             $grid->advertising_space()->name('所属广告位');
             $grid->sort('排序')->editable();
 
+            $grid->filter(function($filter) {
+                $filter->disableIdFilter(); // 去掉默认的id过滤器
+                $filter->equal('advertising_space_id', '广告位')->select(\App\Models\AdvertisingSpace::all()->pluck('name','id'));
+            });
+
         });
     }
 
