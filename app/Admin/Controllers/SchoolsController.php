@@ -98,9 +98,9 @@ class SchoolsController extends Controller
                 $form->text('code','代码')->rules(function($form){
                     // 如果不是编辑状态，则添加字段唯一验证
                     if (!$id = $form->model()->id) {
-                        return 'unique:schools,code';
+                        return 'required|unique:schools,code';
                     }else{
-                        return 'unique:schools,code,'.$id;
+                        return 'required|unique:schools,code,'.$id;
                     }
                 });
                 $form->text('name', '名称')->rules('required');
@@ -120,6 +120,7 @@ class SchoolsController extends Controller
                 $form->hidden('city_code');
                 $form->hidden('district');
                 $form->hidden('district_code');
+                $form->ignore(['area']); //area字段不用保存，忽略掉
             });
 
 
