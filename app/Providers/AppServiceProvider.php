@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Encore\Admin\Config\Config;
 use Illuminate\Support\ServiceProvider;
+use DB;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,6 +16,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Config::load();  // 加上这一行
+
+        DB::listen(function ($query) {
+              //echo $query->sql."||||||||<br>";
+            // print_r( $query->bindings);
+            // $query->time
+        });
     }
 
     /**

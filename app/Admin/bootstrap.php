@@ -19,8 +19,10 @@
  */
 
 use App\Admin\Extensions\WangEditor;
+use App\Admin\Extensions\CityPicker;
 use Encore\Admin\Form;
 
 Form::extend('editor', WangEditor::class);
+Form::extend('citypicker', CityPicker::class);
 
 Encore\Admin\Form::forget(['map']);

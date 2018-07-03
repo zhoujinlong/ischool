@@ -21,6 +21,7 @@ Route::group([
         'newstypes' => NewstypesController::class,
         'advertisingSpaces' => AdvertisingSpacesController::class,
         'advertisings' => AdvertisingsController::class,
+        'schools' => SchoolsController::class,
     ]);
 
     $router->get('api/advertisingSpaces', 'ApiController@AdvertisingSpaces')->name('admin.api.advertisingSpaces');

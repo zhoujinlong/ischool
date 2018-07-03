@@ -11,4 +11,5 @@ class Newstype extends Model
     use ModelTree, AdminBuilder;
 
     protected $fillable = ['title', 'parent_id', 'order'];
+
 }
